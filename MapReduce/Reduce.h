@@ -1,2 +1,5 @@
 #pragma once
-/* Reduce.h */
+class Reduce
+{
+};
+
