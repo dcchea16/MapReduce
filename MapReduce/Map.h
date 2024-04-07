@@ -2,6 +2,7 @@
 class Map
 {
 	//testing
+	//testing2
 };
 
 /* Map.h */
