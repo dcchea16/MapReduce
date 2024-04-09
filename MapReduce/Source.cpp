@@ -1,16 +1,29 @@
 #include <iostream>
-#include <string>
-#include <filesystem>
-namespace fs = std::filesystem;
-
+#include "Map.h"
 #include "FileManagement.h"
 
-int main() {
-	std::cout << "Hello World!\n";
+using std::string;
+using std::cerr;
+using std::cout;
 
-	std::string foobar = FileManagement::readDatafromFile(".\\inputs\\input1.txt");
+int main() 
+{
+    string inputDir = ".\\inputs";
+    string tempDir = ".\\temps";
+    string inputBaseName = "input1"; // Only the base name, no path, no extension
 
-	std::cout << "foobar: " << foobar << '\n';
+    string inputFilePath = inputDir + "\\" + inputBaseName + ".txt";
 
-	return 0;
+    string fileContent = FileManagement::readDatafromFile(inputFilePath);
+    if (fileContent.empty()) 
+    {
+        cerr << "Input file is empty or could not be read.\n";
+        return 1;
+    }
+
+    Map mapper(inputBaseName, tempDir);
+    mapper.map(inputBaseName, fileContent);
+    mapper.exportToFile();
+
+    cout << "Mapping completed. Check the temp directory for output.\n";
 }
