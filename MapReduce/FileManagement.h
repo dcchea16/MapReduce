@@ -4,6 +4,7 @@ for the program and its private members.
 */
 
 #pragma once
+
 #include <iostream>
 
 using std::string;
