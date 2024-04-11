@@ -27,16 +27,16 @@ void Map::map(const string& key, const string& value)
 
 void Map::exportToFile() 
 {
-    ofstream tempFile(tempFileName);
+    std::ofstream tempFile(tempFileName);
     if (!tempFile.is_open()) 
     {
-        cerr << "Failed to open temp file for writing: " << tempFileName << '\n';
+        std::cerr << "Failed to open temp file for writing: " << tempFileName << '\n';
         return;
     }
 
     for (const auto& wordCountPair : wordCountMap) 
     {
-        tempFile << wordCountPair.first << " " << wordCountPair.second << "\n";
+        tempFile << "(\"" << wordCountPair.first << "\", " << wordCountPair.second << ")\n";
     }
 }
 
