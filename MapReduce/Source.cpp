@@ -1,22 +1,22 @@
 #include <iostream>
-#include <string>
-#include <filesystem>
-namespace fs = std::filesystem;
-
+#include "Map.h"
 #include "FileManagement.h"
 
-int main() {
+using std::string;
+using std::cerr;
+using std::cout;
 
-	std::string testZero = FileManagement::readDatafromFile(".\\inputs\\input1.txt");
+int main() 
+{
+    string inputDir = ".\\inputs";
+    string tempDir = ".\\temps";
+    string inputBaseName = "input1"; // Only the base name, no path, no extension
 
-	std::cout << "testZero: " << testZero << '\n';
+    string inputFilePath = inputDir + "\\" + inputBaseName + ".txt";
 
-	//int testOne = FileManagement::createDirectory("temp");
-	//int testTwo = FileManagement::createFile(".\\temp\\inputHere.txt");
-	//int testThree = FileManagement::writeDataToFile(".\\temp\\inputHere.txt", "i wrote something here");
-	//int testFour = FileManagement::createFile(".\\temp\\inputThere.txt");
-	//int testFive = FileManagement::deleteFile(".\\temp\\inputThere.txt");
-	//int testSix = FileManagement::deleteDirectory("temp");
+	std::string foobar = FileManagement::readDatafromFile(".\\inputs\\input1.txt");
 
-	return 0;
+	std::cout << "foobar: " << foobar << '\n';
+
+    cout << "Mapping completed. Check the temp directory for output.\n";
 }
