@@ -12,12 +12,8 @@ using std::cerr;
 using std::transform;
 using std::remove_if;
 
-Map::Map(const string& inputFileName, const string& tempDirectory): tempDirectory(tempDirectory) 
+Map::Map()
 {
-    // Construct the temporary file name
-    size_t lastdot = inputFileName.find_last_of(".");
-    string basename = (lastdot == string::npos) ? inputFileName : inputFileName.substr(0, lastdot);
-    tempFileName = tempDirectory + "\\temp" + basename + ".txt";
 }
 
 void Map::map(const string& key, const string& value) 
@@ -27,16 +23,12 @@ void Map::map(const string& key, const string& value)
 
 void Map::exportToFile() 
 {
-    ofstream tempFile(tempFileName);
-    if (!tempFile.is_open()) 
+    const string fileName = "temp.txt";
+    int create = FileManagement::createFile(".\\temps\\" + fileName);
+    int write = 0;
+    for (const auto& wordCountPair : wordCountMap)
     {
-        cerr << "Failed to open temp file for writing: " << tempFileName << '\n';
-        return;
-    }
-
-    for (const auto& wordCountPair : wordCountMap) 
-    {
-        tempFile << wordCountPair.first << " " << wordCountPair.second << "\n";
+        write = FileManagement::writeDataToFile(".\\temps\\" + fileName, wordCountPair.first, wordCountPair.second);
     }
 }
 

@@ -24,7 +24,7 @@ string FileManagement::readDatafromFile(const string& filePath)
 	return string(std::istreambuf_iterator<char>(t), std::istreambuf_iterator<char>());
 }
 
-int FileManagement::writeDataToFile(const string& filePath, const string& data)
+int FileManagement::writeDataToFile(const string& filePath, const string& data, const int& num)
 {
 	if (!std::filesystem::exists(filePath))
 	{

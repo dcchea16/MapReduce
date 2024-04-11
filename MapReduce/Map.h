@@ -9,7 +9,7 @@ using std::unordered_map;
 class Map 
 {
 public:
-    Map(const string& inputFileName, const string& tempDirectory);
+    Map();
     void map(const string& key, const string& value);
     void exportToFile();
 

@@ -20,7 +20,7 @@ public:
 	~FileManagement() = default;
 	
 	static string readDatafromFile(const string& filePath);
-	static int writeDataToFile(const string& filePath, const string& data);
+	static int writeDataToFile(const string& filePath, const string& data, const int& num);
 
 	static int createDirectory(const string& dirPath);
 	static int deleteDirectoryContents(const string& dirPath);
