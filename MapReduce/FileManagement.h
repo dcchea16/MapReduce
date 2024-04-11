@@ -23,7 +23,7 @@ public:
 	static int writeDataToFile(const string& filePath, const string& data);
 
 	static int createDirectory(const string& dirPath);
-	static int deleteDirectory(const string& dirPath);
+	static int deleteDirectoryContents(const string& dirPath);
 
 	static int createFile(const string& filePath);
 	static int deleteFile(const string& filePath);

@@ -6,7 +6,6 @@
 #include <fstream>
 #include <streambuf>
 
-
 string FileManagement::readDatafromFile(const string& filePath)
 {
 	if (!std::filesystem::exists(filePath))
@@ -51,17 +50,25 @@ int FileManagement::createDirectory(const string& dirPath)
 	return 0;
 }
 
-int FileManagement::deleteDirectory(const string& dirPath)
+int FileManagement::deleteDirectoryContents(const string& dirPath)
 {
 	if (!std::filesystem::exists(dirPath))
 	{
 		std::cerr << "error directory path (" << dirPath << ") doesn't exist!\n";
 		return 1;
 	}
+	else if (std::filesystem::is_empty(dirPath))
+	{
+		std::cerr << "directory path (" << dirPath << ") is already empty!\n";
+		return 0;
+	}
 
-	std::filesystem::remove_all(dirPath);
+	for (const auto& entry : std::filesystem::directory_iterator(dirPath))
+	{
+		std::filesystem::remove_all(entry.path());
+	}
+
 	return 0;
-
 }
 
 int FileManagement::createFile(const string& filePath)
