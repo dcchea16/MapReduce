@@ -23,7 +23,7 @@ int main()
 
     Map mapper;
     mapper.map(inputBaseName, fileContent);
-    mapper.exportToFile();
+    //mapper.exportToFile();
 
 
 	std::string foobar = FileManagement::readDatafromFile(".\\inputs\\input1.txt");

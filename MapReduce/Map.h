@@ -14,9 +14,5 @@ public:
     void exportToFile();
 
 private:
-    string tempDirectory;
-    string tempFileName;
-    unordered_map<string, int> wordCountMap;
-
-    void tokenizeAndCount(const string& line);
+    unordered_map<string, int> wordCount;
 };
