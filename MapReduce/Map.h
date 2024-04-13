@@ -15,4 +15,6 @@ public:
 
 private:
     unordered_map<string, int> wordCount;
+    int bufferCount = 0;
+    const int bufferThreshold = 100;
 };
