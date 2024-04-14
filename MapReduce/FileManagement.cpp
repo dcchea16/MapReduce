@@ -13,7 +13,7 @@ string FileManagement::readDatafromFile(const string& filePath)
 		std::cerr << "error file path (" << filePath << ") not found!\n";
 		return string();
 	}
-	else if (!std::filesystem::exists(filePath))
+	else if (std::filesystem::is_empty(filePath))
 	{
 		std::cerr << "error file path (" << filePath << ") is empty!\n";
 		return string();
@@ -32,9 +32,8 @@ int FileManagement::writeDataToFile(const string& filePath, const string& data, 
 		return 1;
 	}
 
-	std::ofstream ofs(filePath);
+	std::ofstream ofs(filePath, std::ios_base::app);
 	ofs << data << " " << num;
-	ofs.close();
 	return 0;
 }
 
