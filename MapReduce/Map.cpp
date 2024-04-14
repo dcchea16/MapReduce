@@ -17,7 +17,7 @@ Map::Map()
 void Map::map(const string& key, const string& value) 
 {
     vector<string> tokens;
-    boost::algorithm::split(tokens, value, boost::algorithm::is_any_of("\t ,.!?;:\"'"), boost::algorithm::token_compress_on);
+    boost::algorithm::split(tokens, value, boost::algorithm::is_any_of("\n\t ,.!?;:\"'"), boost::algorithm::token_compress_on);
 
     for (auto& token : tokens)
     {
@@ -39,6 +39,7 @@ void Map::exportToFile()
     int write = 0;
     for (const auto& wordCountPair : wordCount)
     {
-        write = FileManagement::writeDataToFile(".\\temps\\" + fileName, wordCountPair.first, wordCountPair.second);
+        string wordCombo = "(\"" + wordCountPair.first + "\", " + std::to_string(wordCountPair.second) + ")\n";
+        write = FileManagement::writeDataToFile(".\\temps\\" + fileName, wordCombo);
     }
 }

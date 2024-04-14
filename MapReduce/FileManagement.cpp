@@ -24,7 +24,7 @@ string FileManagement::readDatafromFile(const string& filePath)
 	return string(std::istreambuf_iterator<char>(t), std::istreambuf_iterator<char>());
 }
 
-int FileManagement::writeDataToFile(const string& filePath, const string& data, const int& num)
+int FileManagement::writeDataToFile(const string& filePath, const string& data)
 {
 	if (!std::filesystem::exists(filePath))
 	{
@@ -33,7 +33,7 @@ int FileManagement::writeDataToFile(const string& filePath, const string& data, 
 	}
 
 	std::ofstream ofs(filePath, std::ios_base::app);
-	ofs << data << " " << num;
+	ofs << data;
 	ofs.close();
 	return 0;
 }

@@ -1,2 +1,1 @@
-some 1text
-another 1line 2of 2text 1
+("another", 1)
