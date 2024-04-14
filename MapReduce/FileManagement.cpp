@@ -33,7 +33,7 @@ int FileManagement::writeDataToFile(const string& filePath, const string& data, 
 	}
 
 	std::ofstream ofs(filePath);
-	ofs << data;
+	ofs << data << " " << num;
 	ofs.close();
 	return 0;
 }
