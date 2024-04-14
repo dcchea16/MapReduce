@@ -28,18 +28,12 @@ void Map::map(const string& key, const string& value)
             wordCount[token]++;
         }
     }
-
-    bufferCount++;  
-
-    if (bufferCount >= bufferThreshold) 
-    {
-        exportToFile();
-        bufferCount = 0;  
-    }
+    exportToFile();
 }
 
 void Map::exportToFile() 
 {
+    std::cout << "Export to file\n";
     const string fileName = "temp.txt";
     int create = FileManagement::createFile(".\\temps\\" + fileName);
     int write = 0;

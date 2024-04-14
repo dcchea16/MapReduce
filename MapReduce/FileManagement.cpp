@@ -34,6 +34,7 @@ int FileManagement::writeDataToFile(const string& filePath, const string& data, 
 
 	std::ofstream ofs(filePath, std::ios_base::app);
 	ofs << data << " " << num;
+	ofs.close();
 	return 0;
 }
 
