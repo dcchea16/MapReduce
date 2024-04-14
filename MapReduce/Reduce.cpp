@@ -1,4 +1,5 @@
 #include "Reduce.h"
+#include "FileManagement.h"
 
 void Reduce::exportReduce(string key, int reducedValue) {
     
