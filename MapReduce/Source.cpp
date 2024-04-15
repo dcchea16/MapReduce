@@ -8,6 +8,9 @@ using std::cout;
 
 int main() 
 {
+    // clear temp dir
+    FileManagement::deleteDirectoryContents(".\\temps");
+
     string inputDir = ".\\inputs";
     string inputBaseName = "input1"; // Only the base name, no path, no extension
 
