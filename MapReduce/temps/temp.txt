@@ -1,5 +1,5 @@
+("text", 13)
 ("some", 1)
 ("line", 2)
 ("of", 2)
-("text", 2)
 ("another", 1)

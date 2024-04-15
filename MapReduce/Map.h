@@ -15,6 +15,7 @@ public:
 
 private:
     unordered_map<string, int> wordCount;
+    void flushBuffer();
     int bufferCount = 0;
     const int bufferThreshold = 100;
 };

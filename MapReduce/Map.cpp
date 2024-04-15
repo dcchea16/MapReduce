@@ -26,9 +26,27 @@ void Map::map(const string& key, const string& value)
         if (!token.empty())
         {
             wordCount[token]++;
+
+            bufferCount++; 
+            if (bufferCount >= bufferThreshold) 
+            {
+                exportToFile();
+                wordCount.clear();  
+                bufferCount = 0;    
+            }
         }
     }
-    exportToFile();
+    flushBuffer();
+}
+
+void Map::flushBuffer()
+{
+    if (!wordCount.empty())
+    {
+        exportToFile();
+        wordCount.clear();
+        bufferCount = 0;
+    }
 }
 
 void Map::exportToFile() 
