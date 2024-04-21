@@ -21,18 +21,19 @@ int Sort::parse_line(const string& fileName)
     return 0;
 }
 
-int Sort::create_word_map()
+std::map <std::string, std::vector<int>>  Sort::create_word_map()
 {
-    //currently in input folder, need to implement FileManagement
-    ifstream input_file(".\\inputs\\intermediary.txt");
-    string line;
 
-    string token;
+    FileManagement::readAllDirectoryFileContents(".\\temps\\");
+    //currently in input folder, need to implement FileManagement
+    ifstream input_file("output1.txt");
+    string line;
     string part;
     string strNew;
     int value;
     int count = 0;
     map<string, vector<int>> words;
+
     //get line
     while (getline(input_file, line)) {
         istringstream is(line);
@@ -74,26 +75,5 @@ int Sort::create_word_map()
         }
     }
 
-    // write file
-    ofstream outputFile;
-    outputFile.open("output.txt" , std::ios_base::app);
-   
-    if (outputFile.is_open()) {
-        for (const auto& pair : words) {
-            outputFile << pair.first << ", [ ";
-            for (int num : pair.second) {
-                outputFile << num << " ";
-            }
-            outputFile << "]";
-            outputFile << endl;
-        }
-        outputFile.close();
-       
-    }
-    else {
-        cerr << "Unable to open file for writing." << endl;
-    }
-
-
-    return 0;
+    return words;
 }
