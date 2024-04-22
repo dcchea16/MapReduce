@@ -13,21 +13,31 @@ using std::map;
 
 int main(int argc, char* argv[])
 {
-    ////checks if there are the correct number of inputs
-    //if (argc < 4) {
-    //    cerr << "Error: Not enough inputs. \n";
-    //    return 1; // Return error code
-    //}
-    //else if (argc > 4) {
-    //    cerr << "Error: Too many inputs. \n";
-    //    return 1; // Return error code
-    //}
-
+    //inputs
+    string inputDir;
+    //outputs
+    string outputDir;
+    //temps
+    string tempDir;
 
     // Convert command-line arguments to appropriate types
-    string inputDir = ".\\inputs";
-    string tempDir = ".\\temps";
-    string outputDir = ".\\outputs";
+    while (FileManagement::readDirectory(inputDir))
+    {
+        std::cout << "Please type in a valid input directory.\n";
+        std::cin >> inputDir;
+    }
+
+    while (FileManagement::readDirectory(outputDir))
+    {
+        std::cout << "Please type in a valid output directory.\n";
+        std::cin >> outputDir;
+    }
+
+    while (FileManagement::readDirectory(tempDir))
+    {
+        std::cout << "Please type in a valid temp directory.\n";
+        std::cin >> tempDir;
+    }
 
     FileManagement::deleteDirectoryContents(tempDir);
 

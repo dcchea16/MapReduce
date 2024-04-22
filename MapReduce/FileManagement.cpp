@@ -54,7 +54,6 @@ int FileManagement::readDirectory(const string& dirPath)
 {
 	if (!std::filesystem::exists(dirPath))
 	{
-		std::cerr << "Error directory path (" << dirPath << ") doesn't exist!\n";
 		return 1;
 	}
 
