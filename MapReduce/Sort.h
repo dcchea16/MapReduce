@@ -15,7 +15,6 @@ public:
 	// Destructor
 	~Sort() = default;
 
+	std::map <std::string, std::vector<int>> create_word_map(string tempDir);
 	
-	std::map <std::string, std::vector<int>> create_word_map();
-	int parse_line(const string& file);
 };

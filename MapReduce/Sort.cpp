@@ -9,24 +9,12 @@
 //#include <bits/stdc++.h>
 
 using namespace std;
-int Sort::parse_line(const string& fileName)
-{
-  /*  ifstream input_file(fileName);
-    string line;
 
-    while (getline(input_file, line)) {
-        create_word_arrays(line);
-    }*/
-
-    return 0;
-}
-
-std::map <std::string, std::vector<int>>  Sort::create_word_map()
+std::map <std::string, std::vector<int>>  Sort::create_word_map(string tempDir)
 {
 
-    FileManagement::readAllDirectoryFileContents(".\\temps\\");
-    //currently in input folder, need to implement FileManagement
-    ifstream input_file("output1.txt");
+    FileManagement::readAllDirectoryFileContents(".\\"+ tempDir + "\\");
+    ifstream input_file("allWords.txt");
     string line;
     string part;
     string strNew;
