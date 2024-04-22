@@ -3,20 +3,16 @@
 #include <iostream>
 #include <vector>
 using std::vector;
+using std::string;
 class Reduce
 {
 public:
-	Reduce(string keyInput, vector<int> countInput) 
-	{
-		int reducedValue = 0;
-		for (int aCount : count) {
-			reducedValue = reducedValue + aCount;
-		}
-		exportReduce(keyInput,reducedValue);
-	}
+    Reduce (string theDirInput)
+    :theDir(theDirInput){};
+    int reduce(string keyInput, vector<int> countInput);
 private:
-	void exportReduce(string key, int reducedValue);
+    string theDir;
+    int exportReduce(string key, int reducedValue);
 
 
 };
-
