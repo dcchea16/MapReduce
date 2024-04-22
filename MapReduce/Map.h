@@ -18,4 +18,5 @@ private:
     void flushBuffer();
     int bufferCount = 0;
     const int bufferThreshold = 100;
+    string fileName;
 };
