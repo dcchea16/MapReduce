@@ -10,12 +10,12 @@ string FileManagement::readDatafromFile(const string& filePath)
 {
 	if (!std::filesystem::exists(filePath))
 	{
-		std::cerr << "error file path (" << filePath << ") not found!\n";
+		std::cerr << "Error file path (" << filePath << ") not found!\n";
 		return string();
 	}
 	else if (std::filesystem::is_empty(filePath))
 	{
-		std::cerr << "error file path (" << filePath << ") is empty!\n";
+		std::cerr << "Error file path (" << filePath << ") is empty!\n";
 		return string();
 	}
 
@@ -28,7 +28,7 @@ int FileManagement::writeDataToFile(const string& filePath, const string& data)
 {
 	if (!std::filesystem::exists(filePath))
 	{
-		std::cerr << "error file path (" << filePath << ") not found!\n";
+		std::cerr << "Error file path (" << filePath << ") not found!\n";
 		return 1;
 	}
 
@@ -42,7 +42,7 @@ int FileManagement::createDirectory(const string& dirPath)
 {
 	if (std::filesystem::exists(dirPath))
 	{
-		std::cerr << "error directory path (" << dirPath << ") already exists!\n";
+		std::cerr << "Error directory path (" << dirPath << ") already exists!\n";
 		return 1;
 	}
 
@@ -50,33 +50,22 @@ int FileManagement::createDirectory(const string& dirPath)
 	return 0;
 }
 
-//TODO
-int FileManagement::readAllDirectoryFileContents(const string& dirPath)
+int FileManagement::readDirectory(const string& dirPath)
 {
 	if (!std::filesystem::exists(dirPath))
 	{
-		std::cerr << "error directory path (" << dirPath << ") doesn't exist!\n";
+		std::cerr << "Error directory path (" << dirPath << ") doesn't exist!\n";
 		return 1;
 	}
 
-	if (std::filesystem::is_empty(dirPath))
-	{
-		std::cerr << "directory path (" << dirPath << ") is empty!\n";
-		return 1;
-	}
-
-	for (const auto& entry : std::filesystem::directory_iterator(dirPath))
-	{
-		string contents = readDatafromFile(entry.path().string());
-		// Create a temp file to write to?
-	}
+	return 0;
 }
 
 int FileManagement::deleteDirectoryContents(const string& dirPath)
 {
 	if (!std::filesystem::exists(dirPath))
 	{
-		std::cerr << "error directory path (" << dirPath << ") doesn't exist!\n";
+		std::cerr << "Error directory path (" << dirPath << ") doesn't exist!\n";
 		return 1;
 	}
 
@@ -98,7 +87,7 @@ int FileManagement::createFile(const string& filePath)
 {
 	if (std::filesystem::exists(filePath))
 	{
-		std::cerr << "error file path (" << filePath << ") already exists!\n";
+		std::cerr << "Error file path (" << filePath << ") already exists!\n";
 		return 1;
 	}
 
@@ -111,7 +100,7 @@ int FileManagement::deleteFile(const string& filePath)
 {
 	if (!std::filesystem::exists(filePath))
 	{
-		std::cerr << "error file path (" << filePath << ") already exists!\n";
+		std::cerr << "Error file path (" << filePath << ") already exists!\n";
 		return 1;
 	}
 

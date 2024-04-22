@@ -59,13 +59,11 @@ void Map::flushBuffer()
 void Map::exportToFile() 
 {
     std::cout << "Export to file\n";
-    std::cout << "This is the file: " + fileName + "\n";
-    const string fileNameTemp = fileName;
-    int create = FileManagement::createFile(tempDirectory + "\\" + fileNameTemp);
+    int create = FileManagement::createFile(tempDirectory + "\\" + fileName);
     int write = 0;
     for (const auto& wordCountPair : wordCount)
     {
         string wordCombo = "(\"" + wordCountPair.first + "\", " + std::to_string(wordCountPair.second) + ")\n";
-        write = FileManagement::writeDataToFile(".\\temps\\" + fileNameTemp, wordCombo);
+        write = FileManagement::writeDataToFile(".\\temps\\" + fileName, wordCombo);
     }
 }

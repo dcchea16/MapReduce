@@ -10,20 +10,25 @@ using std::cin;
 
 int main() 
 {
-    // clear temp dir
-	// Replace this with user input
+	// Replace temporary directory with user input
 	string tempDirName = ".\\temps";
-    FileManagement::deleteDirectoryContents(".\\temps");
 
+	// Clear temp directory
+    FileManagement::deleteDirectoryContents(tempDirName);
+
+	// Replace input directory with user input
     string inputDir = ".\\inputs";
 
+	// Create Map object with temporary directory name
     Map mapper(tempDirName);
 
+	// Iterate through all of the files in the input directory
 	for (const auto& entry : std::filesystem::directory_iterator(inputDir))
 	{
-		cout << "This is the file i'm reading from: " + entry.path().filename().string() + "\n";
+		// Read all files from the input directory
 		string contents = FileManagement::readDatafromFile(entry.path().string());
+
+		// Pass in the file name and its contents
 		mapper.map(entry.path().filename().string(), contents);
-		// Create a temp file to write to?
 	}
 }
