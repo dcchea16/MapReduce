@@ -6,7 +6,7 @@ using std::string;
 using std::to_string;
 
 
-void Reduce::reduce(string keyInput, vector<int> countInput)
+int Reduce::reduce(string keyInput, vector<int> countInput)
 {
     int reducedValue = 0;
     for (int aCount : countInput) {
