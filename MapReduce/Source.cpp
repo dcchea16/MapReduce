@@ -48,23 +48,7 @@ int main(int argc, char* argv[]) {
         }
         
     }
-    for (const auto& entry : std::filesystem::directory_iterator(tempDir))
-    {
-        string fileContent = FileManagement::readDatafromFile(entry.path().string());
-        if (fileContent.empty())
-        {
-            cerr << entry.path().string() << " is empty or could not be read.\n";
-        }
-        else {
-            //the sorting//sorting calls reduce
-            try {
-                std::filesystem::current_path(outputDir);
-            }
-            catch (const std::filesystem::filesystem_error& e) {
-                std::cerr << "Failed to change directory: " << e.what() << std::endl;
-            }
-            
-        }
+    //sorting, sorting calls reduce
 
     }
 
