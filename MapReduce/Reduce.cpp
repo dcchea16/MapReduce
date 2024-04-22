@@ -1,16 +1,30 @@
 #include "Reduce.h"
 #include "FileManagement.h"
+#include <filesystem>
+#include <string>
+using std::string;
+using std::to_string;
 
-void Reduce::exportReduce(string key, int reducedValue) {
+
+void Reduce::reduce(string keyInput, vector<int> countInput)
+{
+    int reducedValue = 0;
+    for (int aCount : countInput) {
+        reducedValue = reducedValue + aCount;
+    }
+    exportReduce(keyInput,reducedValue);
+}
+
+
+int Reduce::exportReduce(string key, int reducedValue) {
     
-	if (std::filesystem::exists(".\\" + "theOutput.txt"))
-	{}
-	else {
-		int createOutput = FileManagement::createFile(".\\" + "theOutput.txt");
-	}
-    int added=FileManagement::writeDataToFile(".\\" + "theOutput.txt", key, reducedValue);
-	if (added==0) {
-		int createSuccess = FileManagement::createFile(".\\" + "SUCCESS.txt");
-	}
+    if (std::filesystem::exists(theDir+"\theOutput.txt"))
+    {}
+    else {
+        int createOutput = FileManagement::createFile(theDir+"\theOutput.txt");
+    }
+    string key_value_pair="[\" "+key+"\","+ to_string(reducedValue)+"]\n";
+    int added=FileManagement::writeDataToFile(theDir+"\theOutput.txt",key_value_pair);
+    return added;
 
 }
