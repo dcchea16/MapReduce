@@ -49,12 +49,6 @@ int main(int argc, char* argv[])
     for (const auto& pair : words) {
         Reduce theReduction(outputDir);
         isSuccessful = isSuccessful + theReduction.reduce(pair.first, pair.second);
-
-            cout << pair.first << " ";
-            for (int num : pair.second) {
-                cout << num << " ";
-            }
-            cout << '\n';
     }
     if (isSuccessful == 0) {
         int createOutput = FileManagement::createFile(outputDir + "\\Success.txt");

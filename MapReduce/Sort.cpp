@@ -15,7 +15,7 @@ std::map <std::string, std::vector<int>>  Sort::create_word_map(string tempDir)
     std::cout << "create word map \n";
     std::cout << "this is the temp dir: " + tempDir << "\n";
     FileManagement::readAllDirectoryFileContents(tempDir);
-    ifstream input_file("allWords.txt");
+    ifstream input_file(tempDir + "\\allWords.txt");
     string line;
     string part;
     string strNew;
