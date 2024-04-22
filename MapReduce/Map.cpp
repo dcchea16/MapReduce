@@ -9,12 +9,18 @@ using std::vector;
 using std::string;
 using std::unordered_map;
 
-Map::Map()
-{
 
+Map::Map() :
+    tempDirectory{}
+{
 }
 
-void Map::map(const string& key, const string& value) 
+Map::Map(string tempDir) :
+    tempDirectory { tempDir }
+{
+}
+
+void Map::map(const string& key, const string& value)
 {
     vector<string> tokens;
     fileName = key;
@@ -55,7 +61,7 @@ void Map::exportToFile()
     std::cout << "Export to file\n";
     std::cout << "This is the file: " + fileName + "\n";
     const string fileNameTemp = fileName + ".txt";
-    int create = FileManagement::createFile(".\\temps\\" + fileNameTemp);
+    int create = FileManagement::createFile(tempDirectory + "\\" + fileNameTemp);
     int write = 0;
     for (const auto& wordCountPair : wordCount)
     {

@@ -50,27 +50,27 @@ int FileManagement::createDirectory(const string& dirPath)
 	return 0;
 }
 
-////TODO
-//int FileManagement::readAllDirectoryFileContents(const string& dirPath)
-//{
-//	if (!std::filesystem::exists(dirPath))
-//	{
-//		std::cerr << "error directory path (" << dirPath << ") doesn't exist!\n";
-//		return 1;
-//	}
-//
-//	if (std::filesystem::is_empty(dirPath))
-//	{
-//		std::cerr << "directory path (" << dirPath << ") is empty!\n";
-//		return 1;
-//	}
-//
-//	for (const auto& entry : std::filesystem::directory_iterator(dirPath))
-//	{
-//		string contents = readDatafromFile(entry.path().string());
-//		// Create a temp file to write to?
-//	}
-//}
+//TODO
+int FileManagement::readAllDirectoryFileContents(const string& dirPath)
+{
+	if (!std::filesystem::exists(dirPath))
+	{
+		std::cerr << "error directory path (" << dirPath << ") doesn't exist!\n";
+		return 1;
+	}
+
+	if (std::filesystem::is_empty(dirPath))
+	{
+		std::cerr << "directory path (" << dirPath << ") is empty!\n";
+		return 1;
+	}
+
+	for (const auto& entry : std::filesystem::directory_iterator(dirPath))
+	{
+		string contents = readDatafromFile(entry.path().string());
+		// Create a temp file to write to?
+	}
+}
 
 int FileManagement::deleteDirectoryContents(const string& dirPath)
 {

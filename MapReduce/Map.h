@@ -10,6 +10,7 @@ class Map
 {
 public:
     Map();
+    Map(string tempDir);
     void map(const string& key, const string& value);
     void exportToFile();
 
@@ -19,4 +20,6 @@ private:
     int bufferCount = 0;
     const int bufferThreshold = 100;
     string fileName;
+
+    const string tempDirectory;
 };

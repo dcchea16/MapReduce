@@ -6,15 +6,18 @@
 using std::string;
 using std::cerr;
 using std::cout;
+using std::cin;
 
 int main() 
 {
     // clear temp dir
+	// Replace this with user input
+	string tempDirName = ".\\temps";
     FileManagement::deleteDirectoryContents(".\\temps");
 
     string inputDir = ".\\inputs";
 
-    Map mapper;
+    Map mapper(tempDirName);
 
 	for (const auto& entry : std::filesystem::directory_iterator(inputDir))
 	{
