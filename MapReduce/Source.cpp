@@ -63,6 +63,5 @@ int main(int argc, char* argv[])
     if (isSuccessful == 0) {
         int createOutput = FileManagement::createFile(outputDir + "\Success.txt");
     }
-
     //sorting, sorting calls reduce
 }

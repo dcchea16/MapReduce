@@ -16,7 +16,7 @@ int Reduce::reduce(string keyInput, vector<int> countInput)
 
 int Reduce::exportReduce(string key, int reducedValue) {
     
-    string outputFileName = ".\\output\\theOutput.txt";
+    string outputFileName = theDir + "theOutput.txt";
     if (std::filesystem::exists(outputFileName))
     {}
     else 
