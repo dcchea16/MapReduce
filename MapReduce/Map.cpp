@@ -27,7 +27,8 @@ void Map::map(const string& key, const string& value)
     fileName = tempDirectory + "\\" + key;
     int create = FileManagement::createFile(fileName);
 
-    boost::algorithm::split(tokens, value, boost::algorithm::is_any_of("\n\t ,.!?;:\"'"), boost::algorithm::token_compress_on);
+    const char* delimeters = "-[]\n\t ,.!?;:\"'";
+    boost::algorithm::split(tokens, value, boost::algorithm::is_any_of(delimeters), boost::algorithm::token_compress_on);
 
     std::cout << "Exporting file: " + key + '\n';
 
