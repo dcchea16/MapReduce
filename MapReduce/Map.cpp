@@ -9,7 +9,6 @@ using std::vector;
 using std::string;
 using std::unordered_map;
 
-
 Map::Map() :
     tempDirectory{}
 {
@@ -23,8 +22,12 @@ Map::Map(string tempDir) :
 void Map::map(const string& key, const string& value)
 {
     vector<string> tokens;
-    fileName = key;
+    fileName = tempDirectory + "\\" + key;
+    int create = FileManagement::createFile(fileName);
+
     boost::algorithm::split(tokens, value, boost::algorithm::is_any_of("\n\t ,.!?;:\"'"), boost::algorithm::token_compress_on);
+
+    std::cout << "Exporting file: " + key + '\n';
 
     for (auto& token : tokens)
     {
@@ -58,12 +61,10 @@ void Map::flushBuffer()
 
 void Map::exportToFile() 
 {
-    std::cout << "Export to file\n";
-    int create = FileManagement::createFile(tempDirectory + "\\" + fileName);
     int write = 0;
     for (const auto& wordCountPair : wordCount)
     {
         string wordCombo = "(\"" + wordCountPair.first + "\", " + std::to_string(wordCountPair.second) + ")\n";
-        write = FileManagement::writeDataToFile(".\\temps\\" + fileName, wordCombo);
+        write = FileManagement::writeDataToFile(fileName, wordCombo);
     }
 }
