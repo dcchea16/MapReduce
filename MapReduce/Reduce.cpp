@@ -12,7 +12,7 @@ int Reduce::reduce(string keyInput, vector<int> countInput)
     for (int aCount : countInput) {
         reducedValue = reducedValue + aCount;
     }
-    exportReduce(keyInput,reducedValue);
+    return exportReduce(keyInput,reducedValue);
 }
 
 
