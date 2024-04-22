@@ -76,7 +76,7 @@ int FileManagement::readAllDirectoryFileContents(const string& dirPath)
 	}
 
 	std::ofstream outputFile;
-	outputFile.open("output1.txt", std::ios_base::app);
+	outputFile.open("\\outputs\\output1.txt", std::ios_base::app);
 	for (const auto& entry : std::filesystem::directory_iterator(dirPath))
 	{
 		string contents = readDatafromFile(entry.path().string());

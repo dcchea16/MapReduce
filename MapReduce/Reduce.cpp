@@ -7,6 +7,8 @@ using std::to_string;
 
 int Reduce::reduce(string keyInput, vector<int> countInput)
 {
+    std::cout << "reduce \n";
+
     int reducedValue = 0;
     for (int aCount : countInput) {
         reducedValue = reducedValue + aCount;
@@ -15,7 +17,7 @@ int Reduce::reduce(string keyInput, vector<int> countInput)
 }
 
 int Reduce::exportReduce(string key, int reducedValue) {
-    
+    std::cout << "exportReduce \n";
     string outputFileName = theDir + "theOutput.txt";
     if (std::filesystem::exists(outputFileName))
     {}

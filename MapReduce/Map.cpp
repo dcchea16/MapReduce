@@ -21,6 +21,8 @@ Map::Map(string tempDir) :
 
 void Map::map(const string& key, const string& value)
 {
+    std::cout << "map \n";
+
     vector<string> tokens;
     fileName = tempDirectory + "\\" + key;
     int create = FileManagement::createFile(fileName);
@@ -51,6 +53,8 @@ void Map::map(const string& key, const string& value)
 
 void Map::flushBuffer()
 {
+    std::cout << "flushBuffer \n";
+
     if (!wordCount.empty())
     {
         exportToFile();

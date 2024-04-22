@@ -6,14 +6,21 @@
 #include <map>
 #include <sstream>
 #include <iostream>
+#include <filesystem>
 //#include <bits/stdc++.h>
 
 using namespace std;
 
 std::map <std::string, std::vector<int>>  Sort::create_word_map(string tempDir)
 {
+    std::cout << "create word map \n";
 
-    FileManagement::readAllDirectoryFileContents(".\\" + tempDir + "\\");
+    for (const auto& entry : std::filesystem::directory_iterator(tempDir))
+    {
+        string fileContent = FileManagement::readDatafromFile(entry.path().string());
+
+    }
+
     ifstream input_file("allWords.txt");
     string line;
     string part;
