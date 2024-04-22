@@ -48,7 +48,12 @@ int main(int argc, char* argv[]) {
         }
         
     }
-    //sorting, sorting calls reduce
+    Sort sorting;
+    std::map <std::string, std::vector<int>> words = sorting.create_word_map(tempDir);
+    for (const auto& pair : words) {
+        Reduce theReduction(outputDir);
+        theReduction.reduce(pair.first,pair.second);
+    }
 
     }
 
