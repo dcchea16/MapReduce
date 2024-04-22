@@ -1,11 +1,15 @@
 #include <iostream>
 #include <filesystem>
+#include <map>
 #include "Map.h"
 #include "FileManagement.h"
+#include "Reduce.h"
 
 using std::string;
 using std::cerr;
 using std::cout;
+using std::unordered_map;
+using std::map;
 
 int main(int argc, char* argv[])
 {
@@ -49,5 +53,16 @@ int main(int argc, char* argv[])
             mapper.map(entry.path().filename().string(), fileContent);
         }
     }
+
+    std::map <std::string, std::vector<int>> words = sorting.create_word_map(tempDir);
+    int isSuccessful = 0;
+    for (const auto& pair : words) {
+        Reduce theReduction(outputDir);
+        isSuccessful = isSuccessful + theReduction.reduce(pair.first, pair.second);
+    }
+    if (isSuccessful == 0) {
+        int createOutput = FileManagement::createFile(outputDir + "\Success.txt");
+    }
+
     //sorting, sorting calls reduce
 }

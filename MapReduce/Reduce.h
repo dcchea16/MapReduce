@@ -9,7 +9,7 @@ using std::vector;
 class Reduce
 {
 public:
-	Reduce(string keyInput, vector<int> countInput);
+	int reduce(string keyInput, vector<int> countInput);
 
 private:
 	int exportReduce(string key, int reducedValue);

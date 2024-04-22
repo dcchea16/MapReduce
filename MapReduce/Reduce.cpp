@@ -5,13 +5,13 @@
 using std::string;
 using std::to_string;
 
-Reduce::Reduce(string keyInput, vector<int> countInput)
+int Reduce::reduce(string keyInput, vector<int> countInput)
 {
     int reducedValue = 0;
     for (int aCount : countInput) {
         reducedValue = reducedValue + aCount;
     }
-    exportReduce(keyInput,reducedValue);
+    return exportReduce(keyInput,reducedValue);
 }
 
 int Reduce::exportReduce(string key, int reducedValue) {
