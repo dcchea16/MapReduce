@@ -60,7 +60,7 @@ void Map::exportToFile()
 {
     std::cout << "Export to file\n";
     std::cout << "This is the file: " + fileName + "\n";
-    const string fileNameTemp = fileName + ".txt";
+    const string fileNameTemp = fileName;
     int create = FileManagement::createFile(tempDirectory + "\\" + fileNameTemp);
     int write = 0;
     for (const auto& wordCountPair : wordCount)
