@@ -18,8 +18,9 @@ int main()
 
 	for (const auto& entry : std::filesystem::directory_iterator(inputDir))
 	{
+		cout << "This is the file i'm reading from: " + entry.path().filename().string() + "\n";
 		string contents = FileManagement::readDatafromFile(entry.path().string());
-		mapper.map(entry.path().string(), contents);
+		mapper.map(entry.path().filename().string(), contents);
 		// Create a temp file to write to?
 	}
 }

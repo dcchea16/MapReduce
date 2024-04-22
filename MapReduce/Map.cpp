@@ -53,8 +53,9 @@ void Map::flushBuffer()
 void Map::exportToFile() 
 {
     std::cout << "Export to file\n";
+    std::cout << "This is the file: " + fileName + "\n";
     const string fileNameTemp = fileName + ".txt";
-    int create = FileManagement::createFile(".\\temps\\" + fileName);
+    int create = FileManagement::createFile(".\\temps\\" + fileNameTemp);
     int write = 0;
     for (const auto& wordCountPair : wordCount)
     {
