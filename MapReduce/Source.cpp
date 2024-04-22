@@ -4,7 +4,7 @@
 #include "Map.h"
 #include "FileManagement.h"
 #include "Reduce.h"
-
+#include "Sort.h"
 using std::string;
 using std::cerr;
 using std::cout;
@@ -53,6 +53,19 @@ int main(int argc, char* argv[])
             mapper.map(entry.path().filename().string(), fileContent);
         }
     }
+    ////word count map
+    Sort sorting;
+    //std::map <std::string, std::vector<int>> wordCount = sorting.create_word_map();
+
+
+    ////goes through a prints each word and number in int vector
+    //for (const auto& pair : wordCount) {
+    //    cout << pair.first << " ";
+    //    for (int num : pair.second) {
+    //        cout << num << " ";
+    //    }
+    //    cout << '\n';
+    //}
 
     std::map <std::string, std::vector<int>> words = sorting.create_word_map(tempDir);
     int isSuccessful = 0;
