@@ -75,15 +75,15 @@ int FileManagement::readAllDirectoryFileContents(const string& dirPath)
 		return 1;
 	}
 
+	std::cout << "this is the dirpath from read all dir contents : " + dirPath + "\n";
 	std::ofstream outputFile;
-	outputFile.open("\\outputs\\output1.txt", std::ios_base::app);
+	FileManagement::createFile(dirPath + "\\allWords.txt");
+
 	for (const auto& entry : std::filesystem::directory_iterator(dirPath))
 	{
 		string contents = readDatafromFile(entry.path().string());
 
-
-		outputFile << contents;
-		outputFile << '\n';
+		FileManagement::writeDataToFile(dirPath + "\\allWords.txt", contents);
 	}
 }
 
