@@ -44,10 +44,17 @@ int main(int argc, char* argv[])
     Sort sorting;
 
     std::map <std::string, std::vector<int>> words = sorting.create_word_map(tempDir);
+
     int isSuccessful = 0;
     for (const auto& pair : words) {
         Reduce theReduction(outputDir);
         isSuccessful = isSuccessful + theReduction.reduce(pair.first, pair.second);
+
+            cout << pair.first << " ";
+            for (int num : pair.second) {
+                cout << num << " ";
+            }
+            cout << '\n';
     }
     if (isSuccessful == 0) {
         int createOutput = FileManagement::createFile(outputDir + "\\Success.txt");
