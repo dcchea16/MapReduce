@@ -7,7 +7,8 @@ using std::string;
 using std::cerr;
 using std::cout;
 
-int main(int argc, char* argv[]) {
+int main(int argc, char* argv[])
+{
     //checks if there are the correct number of inputs
     if (argc < 4) {
         cerr << "Error: Not enough inputs. \n";
@@ -37,25 +38,16 @@ int main(int argc, char* argv[]) {
 
     for (const auto& entry : std::filesystem::directory_iterator(inputDir))
     {
-        string fileContent = FileManagement::readDatafromFile(entry.path().string());
+        string fileContent = FileManagement::readDatafromFile(entry.path().filename().string());
         if (fileContent.empty())
         {
             cerr << entry.path().string()<<" is empty or could not be read.\n";
         }
-        else {
+        else
+        {
             Map mapper(tempDir);
-            mapper.map(entry.path().string(), fileContent);
+            mapper.map(entry.path().filename().string(), fileContent);
         }
-        
     }
     //sorting, sorting calls reduce
-
-    }
-
-
-    std::string foobar = FileManagement::readDatafromFile(".\\inputs\\input1.txt");
-
-    std::cout << "foobar: " << foobar << '\n';
-
-    cout << "Mapping completed. Check the temp directory for output.\n";
 }
