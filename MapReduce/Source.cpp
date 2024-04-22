@@ -56,10 +56,9 @@ int main(int argc, char* argv[]) {
             cerr << entry.path().string() << " is empty or could not be read.\n";
         }
         else {
-            //the sorting
+            //the sorting//sorting calls reduce
             try {
                 std::filesystem::current_path(outputDir);
-                //loop for the reduce
             }
             catch (const std::filesystem::filesystem_error& e) {
                 std::cerr << "Failed to change directory: " << e.what() << std::endl;
