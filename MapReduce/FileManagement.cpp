@@ -61,6 +61,32 @@ int FileManagement::readDirectory(const string& dirPath)
 	return 0;
 }
 
+int FileManagement::readAllDirectoryFileContents(const string& dirPath)
+{
+	if (!std::filesystem::exists(dirPath))
+	{
+		std::cerr << "error directory path (" << dirPath << ") doesn't exist!\n";
+		return 1;
+	}
+
+	if (std::filesystem::is_empty(dirPath))
+	{
+		std::cerr << "directory path (" << dirPath << ") is empty!\n";
+		return 1;
+	}
+
+	std::ofstream outputFile;
+	outputFile.open("output1.txt", std::ios_base::app);
+	for (const auto& entry : std::filesystem::directory_iterator(dirPath))
+	{
+		string contents = readDatafromFile(entry.path().string());
+
+
+		outputFile << contents;
+		outputFile << '\n';
+	}
+}
+
 int FileManagement::deleteDirectoryContents(const string& dirPath)
 {
 	if (!std::filesystem::exists(dirPath))
