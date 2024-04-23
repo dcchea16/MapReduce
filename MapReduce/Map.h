@@ -9,7 +9,6 @@ using std::unordered_map;
 class Map 
 {
 public:
-    Map();
     Map(string tempDir);
     void map(const string& key, const string& value);
     void exportToFile();
