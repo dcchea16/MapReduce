@@ -2,8 +2,6 @@
 #include "FileManagement.h"
 #include <filesystem>
 #include <string>
-using std::string;
-using std::to_string;
 
 //reduce function that accepts a string and vector of intergers and passes the string and the vector sum to the export function, returns 0 if it is able to add it to the file, 1 if it encounters an error
 int Reduce::reduce(string keyInput, vector<int> countInput)
@@ -35,7 +33,7 @@ int Reduce::exportReduce(string key, int reducedValue) {
     
 
     //create a single string with the key and the sum in the format they should be added to the file
-    string key_value_pair="[\""+key+"\","+ to_string(reducedValue)+"]\n";
+    string key_value_pair="[\""+key+"\","+ std::to_string(reducedValue)+"]\n";
     //calls a FileManagement function to write the string to the file, the function will return 0 if successful and 1 if there is an error
     int added=FileManagement::writeDataToFile(outputFileName,key_value_pair);
     //returns the result of the FileManagement function

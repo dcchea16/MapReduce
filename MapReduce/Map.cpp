@@ -1,26 +1,14 @@
 #include "Map.h"
 #include "FileManagement.h"
+
 #include <vector>
 #include <string>
 #include <unordered_map>
 #include <boost/algorithm/string.hpp> 
 
-using std::vector;
-using std::string;
-using std::unordered_map;
-
-
-
-Map::Map(string tempDir) :
-    tempDirectory { tempDir }
-{
-}
-
 void Map::map(const string& key, const string& value)
 {
-    std::cout << "map \n";
-
-    vector<string> tokens;
+    std::vector<string> tokens;
     fileName = tempDirectory + "\\" + key;
     int create = FileManagement::createFile(fileName);
 
@@ -51,8 +39,6 @@ void Map::map(const string& key, const string& value)
 
 void Map::flushBuffer()
 {
-    std::cout << "flushBuffer \n";
-
     if (!wordCount.empty())
     {
         exportToFile();

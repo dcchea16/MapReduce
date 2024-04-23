@@ -1,31 +1,27 @@
 #include "Sort.h"
 #include "FileManagement.h"
+
 #include <fstream>
 #include <string>
 #include <vector>
 #include <map>
 #include <sstream>
 #include <iostream>
-//#include <bits/stdc++.h>
-
-using namespace std;
 
 std::map <std::string, std::vector<int>>  Sort::create_word_map(string tempDir)
 {
-    std::cout << "create word map \n";
-    std::cout << "this is the temp dir: " + tempDir << "\n";
     FileManagement::readAllDirectoryFileContents(tempDir);
-    ifstream input_file(tempDir + "\\allWords.txt");
+    std::ifstream input_file(tempDir + "\\allWords.txt");
     string line;
     string part;
     string strNew;
     int value;
     int count = 0;
-    map<string, vector<int>> words;
+    std::map<string, std::vector<int>> words;
 
     //get line
     while (getline(input_file, line)) {
-        istringstream is(line);
+        std::istringstream is(line);
         //seperate word from count
         while (getline(is, part, ',')) {
             //if first loop, remove quotation
@@ -48,7 +44,7 @@ std::map <std::string, std::vector<int>>  Sort::create_word_map(string tempDir)
 
                 if (words.find(strNew) == words.end()) {
                     // not found
-                    vector <int> nums = { value };
+                    std::vector <int> nums = { value };
                     words[strNew] = nums;
 
                 }
