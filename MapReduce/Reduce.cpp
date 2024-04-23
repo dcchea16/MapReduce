@@ -5,12 +5,16 @@
 using std::string;
 using std::to_string;
 
+//reduce function that accepts a string and vector of intergers and passes the string and the vector sum to the export function, returns 0 if it is able to add it to the file, 1 if not
 int Reduce::reduce(string keyInput, vector<int> countInput)
 {
+    //creates a variable to hold the sum of the vector
     int reducedValue = 0;
+    //loop to add the intergers from the vector together
     for (int aCount : countInput) {
         reducedValue = reducedValue + aCount;
     }
+    //
     return exportReduce(keyInput,reducedValue);
 }
 
