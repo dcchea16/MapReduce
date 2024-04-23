@@ -9,10 +9,7 @@ using std::vector;
 using std::string;
 using std::unordered_map;
 
-Map::Map() :
-    tempDirectory{}
-{
-}
+
 
 Map::Map(string tempDir) :
     tempDirectory { tempDir }
@@ -27,7 +24,7 @@ void Map::map(const string& key, const string& value)
     fileName = tempDirectory + "\\" + key;
     int create = FileManagement::createFile(fileName);
 
-    const char* delimeters = "-[]\n\t ,.!?;:\"'";
+    const char* delimeters = "-[]\n\t ,.!?;:&\"'";
     boost::algorithm::split(tokens, value, boost::algorithm::is_any_of(delimeters), boost::algorithm::token_compress_on);
 
     std::cout << "Exporting file: " + key + '\n';
