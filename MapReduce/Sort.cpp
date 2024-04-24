@@ -10,21 +10,35 @@
 
 std::map <std::string, std::vector<int>>  Sort::create_word_map(string tempDir)
 {
+    // Get one file for all tuples in the temporary directory
     FileManagement::readAllDirectoryFileContents(tempDir);
+    // Create a variable that will be used as the input file
     std::ifstream input_file(tempDir + "\\allWords.txt");
-    string line;
-    string part;
-    string strNew;
-    int value;
-    int count = 0;
-    std::map<string, std::vector<int>> words;
 
-    //get line
-    while (getline(input_file, line)) {
+    // Create a variable that will be used to look at the current line
+    string line;
+    // Create a variable that will be used as the current part being examined
+    // when line is divided into two parts at the comma
+    string part;
+    // Create a variable that will store a word without any symbols
+    string strNew;
+    // Create a variable that will hold the value in the tuple without any symbols
+    int value;
+    // Create variable that will be used to loop through parts
+    int count = 0;
+
+    // Create a map of strings and integers that will hold the words and their respective values
+    std::map< std::string, std::vector<int>> words;
+
+    // Get line in file
+    while (getline(input_file, line))
+    {
         std::istringstream is(line);
-        //seperate word from count
-        while (getline(is, part, ',')) {
-            //if first loop, remove quotation
+
+        // Separate word from integer/count
+        while (getline(is, part, ','))
+        {
+            // If first loop, remove quotation
             if (count == 0) {
                 unsigned first = part.find("\"");
                 unsigned last = part.find_last_of("\"");
@@ -32,33 +46,39 @@ std::map <std::string, std::vector<int>>  Sort::create_word_map(string tempDir)
                 if (strNew.front() == '"') {
                     strNew.erase(0, 1); // erase the first quotation
                 }
-
             }
-            //if second iteration, remove paranthesis, get integer value and add word and count to map
-            else if (count == 1) {
-                if (part.back() == ')') {
-
-                    part.erase(part.size() - 1); // erase the last character
+            // If second iteration, remove parenthesis, get integer value and add word and count to map
+            else if (count == 1)
+            {
+                if (part.back() == ')')
+                {
+                    // Get rid of the closing parenthesis
+                    part.erase(part.size() - 1);
                 }
+                // Convert to int
                 value = stoi(part);
 
-                if (words.find(strNew) == words.end()) {
-                    // not found
+                // Since word and int are acquired, store in map
+                if (words.find(strNew) == words.end())
+                {
+                    // Not found, intialize vector
                     std::vector <int> nums = { value };
                     words[strNew] = nums;
 
                 }
-                else {
+                else
+                {
+                    // Found and store new int in vector
                     words[strNew].push_back(value);
                 }
-                //reset counter and break
+                // Reset counter and break
                 count = 0;
                 break;
             }
-            //add to count after trimming string and assigning word to strNew
+            // Add to count after trimming string and assigning word to strNew
             count++;
         }
     }
-
+    // Return the map
     return words;
 }

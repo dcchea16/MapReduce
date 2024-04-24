@@ -14,10 +14,12 @@ class Sort
 public:
 
 	// Default constructor
-	Sort() = default;
+	Sort() {};
 
 	// Destructor
-	~Sort() = default;
+	~Sort() {};
 
+	// This function will create a word map that will look at the intermediate results
+	// to sort and aggregate them, given the tempDir
 	std::map <std::string, std::vector<int>> create_word_map(std::string tempDir);
 };

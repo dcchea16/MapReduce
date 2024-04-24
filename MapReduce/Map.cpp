@@ -9,53 +9,74 @@
 // Processes the input key-value pair to tokenize and count word occurrences
 void Map::map(const string& key, const string& value)
 {
-    std::vector<string> tokens; // Stores the tokens after splitting the value
-    fileName = tempDirectory + "\\" + key; // Constructs the file name from the key
-    int create = FileManagement::createFile(fileName); // Attempts to create a file for the output
+    // Stores the tokens after splitting the value
+    std::vector<string> tokens;
+    // Constructs the file name from the key
+    fileName = tempDirectory + "\\" + key;
+    // Attempts to create a file for the output
+    FileManagement::createFile(fileName);
 
-    const char* delimeters = "-[]\n\t ,.!?;:&\"'"; // Delimiters used for splitting the value into tokens
-    boost::algorithm::split(tokens, value, boost::algorithm::is_any_of(delimeters), boost::algorithm::token_compress_on); // Splits the value into tokens based on delimiters
+    // Delimiters used for splitting the value into tokens
+    const char* delimeters = "-[]\n\t ,.!?;:&\"'";
+    // Splits the value into tokens based on delimiters
+    boost::algorithm::split(tokens, value, boost::algorithm::is_any_of(delimeters), boost::algorithm::token_compress_on);
+    // Logging the export operation
+    std::cout << "Exporting file: " + key + '\n';
 
-    std::cout << "Exporting file: " + key + '\n'; // Logging the export operation
-
+    // Iterate through all the tokenized strings
     for (auto& token : tokens)
     {
-        boost::algorithm::to_lower(token); // Converts each token to lower case for uniformity
+        // Converts each token to lower case for uniformity
+        boost::algorithm::to_lower(token);
 
-        if (!token.empty()) // Check if the token is non-empty
+        // Check if the token is non-empty
+        if (!token.empty())
         {
-            wordCount[token]++; // Increment the count for the word
+            // Increment the count for the word
+            wordCount[token]++;
 
-            bufferCount++; // Increment the buffer count
-            if (bufferCount >= bufferThreshold) // Check if the buffer threshold is exceeded
+            // Increment the buffer count
+            bufferCount++;
+            // Check if the buffer threshold is exceeded
+            if (bufferCount >= bufferThreshold)
             {
-                exportToFile(); // Export the current counts to file
-                wordCount.clear(); // Clear the word count map
-                bufferCount = 0; // Reset the buffer count
+                // Export the current counts to file
+                exportToFile();
+                // Clear the word count map
+                wordCount.clear();
+                // Reset the buffer count
+                bufferCount = 0;
             }
         }
     }
-    flushBuffer(); // Ensure all remaining data is written to the file
+    // Ensure all remaining data is written to the file
+    flushBuffer();
 }
 
 // Flushes the remaining word counts to the file if any
 void Map::flushBuffer()
 {
-    if (!wordCount.empty()) // Check if there are any remaining word counts
+    // Check if there are any remaining word counts
+    if (!wordCount.empty())
     {
-        exportToFile(); // Export them to the file
-        wordCount.clear(); // Clear the word count map
-        bufferCount = 0; // Reset the buffer count
+        // Export them to the file
+        exportToFile();
+        // Clear the word count map
+        wordCount.clear();
+        // Reset the buffer count
+        bufferCount = 0;
     }
 }
 
 // Writes the current word counts to the designated file
 void Map::exportToFile()
 {
-    int write = 0;
+    // Iterate through all the word count pairs
     for (const auto& wordCountPair : wordCount)
     {
-        string wordCombo = "(\"" + wordCountPair.first + "\", " + std::to_string(wordCountPair.second) + ")\n"; // Format each word count as a tuple string
-        write = FileManagement::writeDataToFile(fileName, wordCombo); // Write the word count tuple to the file
+        // Format each word count as a tuple string
+        string wordCombo = "(\"" + wordCountPair.first + "\", " + std::to_string(wordCountPair.second) + ")\n";
+        // Write the word count tuple to the file
+        FileManagement::writeDataToFile(fileName, wordCombo);
     }
 }

@@ -48,13 +48,16 @@ int FileManagement::readAllDirectoryFileContents(const string& dirPath)
 		return 1;
 	}
 
+	// Create a file that will hold all of the file contents in the given directory
 	std::ofstream outputFile;
 	FileManagement::createFile(dirPath + "\\allWords.txt");
 
+	// Iterate through all files in the given directory
 	for (const auto& entry : std::filesystem::directory_iterator(dirPath))
 	{
+		// Read data from each file
 		string contents = readDatafromFile(entry.path().string());
-
+		// Write data from each file to the single output file
 		FileManagement::writeDataToFile(dirPath + "\\allWords.txt", contents);
 	}
 }

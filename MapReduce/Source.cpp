@@ -42,14 +42,14 @@ int main(int argc, char* argv[])
     // If the instance of the program has already been used, ensure that the output directory is empty
     FileManagement::deleteDirectoryContents(outputDir);
 
+    // Create a map class, taking in the temporary directory as a parameter
+    Map mapper(tempDir);
+
     // Iterate through the input files in the input directory
     for (const auto& entry : std::filesystem::directory_iterator(inputDir))
     {
         // Read each file and output its contents
         string fileContent = FileManagement::readDatafromFile(entry.path().string());
-
-        // Create a map class, taking in the temporary directory as a parameter
-        Map mapper(tempDir);
 
         // Use the map function to pass in the file name and the file contents
         mapper.map(entry.path().filename().string(), fileContent);
@@ -66,12 +66,13 @@ int main(int argc, char* argv[])
     // if they have it will remain 0
     int isSuccessful = 0;
 
+    // Creates a Reduce class that saves the output directory
+    Reduce theReduction(outputDir);
+
     //loop to run through the string vector pairs in the map and use a reduce class
     // to add the word and the vector sum to an output file in the output directory
     for (const auto& pair : words)
     {
-        // Creates a Reduce class that saves the output directory
-        Reduce theReduction(outputDir);
         // Call the reduce function that adds together the vector to create a vector sum
         // and outputs the key and the sum to a file in the output directory
         // Reduce function returns 0 if it is successful at adding it and returns 1 if unsuccessful,
