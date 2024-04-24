@@ -21,10 +21,22 @@ int FileManagement::createDirectory(const string& dirPath)
 }
 
 // Function that will check if a directory exists, given a directory path as dirPath
-int FileManagement::readDirectory(const string& dirPath)
+int FileManagement::isDirectoryPresent(const string& dirPath)
 {
 	// Check if the directory path exists
 	if (!std::filesystem::exists(dirPath))
+	{
+		return 1;
+	}
+
+	return 0;
+}
+
+// Function that will check if a directory is empty, given a directory path as dirPath
+int FileManagement::isDirectoryEmpty(const string& dirPath)
+{
+	// Check if the directory path exists
+	if (std::filesystem::is_empty(dirPath))
 	{
 		return 1;
 	}

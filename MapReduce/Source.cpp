@@ -17,30 +17,60 @@ int main(int argc, char* argv[])
 
     // Convert command-line arguments to appropriate types
     // Prompt user for input directory
-    while (FileManagement::readDirectory(inputDir))
+    int inputDirectory = 1;
+    while (inputDirectory)
     {
         std::cout << "Please type in a valid input directory.\n";
         std::cin >> inputDir;
+
+        inputDirectory = FileManagement::isDirectoryPresent(inputDir);
+
+        // If input directory exists, but empty, then continue to prompt user for valid input directory
+        if (inputDirectory == 0)
+        {
+            if (FileManagement::isDirectoryEmpty(inputDir))
+            {
+                std::cout << "This directory is empty.\n";
+                inputDirectory = 1;
+            }
+        }
     }
 
     // Prompt user for output directory
-    while (FileManagement::readDirectory(outputDir))
+    int outputDirectory = 1;
+    while (outputDirectory)
     {
         std::cout << "Please type in a valid output directory.\n";
         std::cin >> outputDir;
+        outputDirectory = FileManagement::isDirectoryPresent(outputDir);
     }
 
     // Prompt user for temporary directory
-    while (FileManagement::readDirectory(tempDir))
+    int tempDirectory = 1;
+    while (tempDirectory)
     {
         std::cout << "Please type in a valid temp directory.\n";
         std::cin >> tempDir;
+        tempDirectory = FileManagement::isDirectoryPresent(tempDir);
     }
 
-    // If the instance of the program has already been used, ensure that the temporary directory is empty
-    FileManagement::deleteDirectoryContents(tempDir);
-    // If the instance of the program has already been used, ensure that the output directory is empty
-    FileManagement::deleteDirectoryContents(outputDir);
+    // Check with the user if the output and temp directories can be cleared
+    int userCheck = 1;
+    std::cout << "To run the program correctly, the output and temp directories will be emptied. Is this okay? (0: no, 1: yes)\n";
+    std::cin >> userCheck;
+
+    // If the user says that the directories can not be emptied, end the program and inform the user that the program is unable to continue
+    if (userCheck == 0) {
+        std::cout << "As you do not want the program to empty the temp and output directories, the program is unable to continue.";
+        return 0;
+    }
+    else
+    {
+        // If the instance of the program has already been used, ensure that the temporary directory is empty
+        FileManagement::deleteDirectoryContents(tempDir);
+        // If the instance of the program has already been used, ensure that the output directory is empty
+        FileManagement::deleteDirectoryContents(outputDir);
+    }
 
     // Create a map class, taking in the temporary directory as a parameter
     Map mapper(tempDir);

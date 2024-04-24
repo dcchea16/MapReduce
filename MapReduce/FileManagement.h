@@ -21,8 +21,10 @@ public:
 
 	// Function that will create a directory, given a directory path as dirPath
 	static int createDirectory(const string& dirPath);
-	// Function that will create a directory, given a directory path as dirPath
-	static int readDirectory(const string& dirPath);
+	// Function that will check if a directory exists, given a directory path as dirPath
+	static int isDirectoryPresent(const string& dirPath);
+	// Function that will check if a directory is empty, given a directory path as dirPath
+	static int isDirectoryEmpty(const string& dirPath);
 
 	// Function that will read all file contents from a directory, given a directory path as dirPath
 	static int readAllDirectoryFileContents(const string& dirPath);
