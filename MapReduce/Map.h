@@ -15,20 +15,25 @@ The intermediate data will be written to the temporary directory (specified via 
 using std::string;
 using std::unordered_map;
 
-class Map 
+// Class to handle mapping and counting of words from text data
+class Map
 {
 public:
-    Map(string tempDir) :
-        tempDirectory(tempDir) {}
+    // Constructor to initialize the Map with a directory for temporary storage
+    Map(string tempDir) :  tempDirectory(tempDir) {}  // Initializes the tempDirectory member with the provided directory path
+
+    // Process a key-value pair by tokenizing and counting words
     void map(const string& key, const string& value);
+
+    // Export the current word counts to a file
     void exportToFile();
 
 private:
-    unordered_map<string, int> wordCount;
-    void flushBuffer();
-    int bufferCount = 0;
-    const int bufferThreshold = 100;
-    string fileName;
+    unordered_map<string, int> wordCount; // Hash table to store word counts
+    void flushBuffer(); // Flush remaining words from buffer to file
+    int bufferCount = 0; // Buffer Tracker
+    const int bufferThreshold = 100; // Threshold for the buffer
+    string fileName; // Name of the temp file where word counts are stored
 
-    const string tempDirectory;
+    const string tempDirectory; // Directory path for storing temp files
 };
