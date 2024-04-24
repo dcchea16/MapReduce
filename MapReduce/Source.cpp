@@ -60,7 +60,8 @@ int main(int argc, char* argv[])
     std::cin >> userCheck;
 
     // If the user says that the directories can not be emptied, end the program and inform the user that the program is unable to continue
-    if (userCheck == 0) {
+    if (userCheck == 0)
+    {
         std::cout << "As you do not want the program to empty the temp and output directories, the program is unable to continue.";
         return 0;
     }
