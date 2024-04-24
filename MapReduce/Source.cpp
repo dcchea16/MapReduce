@@ -1,3 +1,19 @@
+/*
+Chandler Nunokawa
+Dana Marie Castillo Chea
+James Lu
+Sarah Welvaert
+
+Professor Scott Roueche
+CSE-687 Object Oriented Design
+
+Syracuse University
+Project Phase 1
+04/24/2024
+This is the driver class for MapReduce. The program will take an input directory where text files
+are stored and will ultimately produce a single output file that contains a list of words and
+their associated counts in the originating input files.*/
+
 #include "Map.h"
 #include "FileManagement.h"
 #include "Reduce.h"
@@ -67,9 +83,9 @@ int main(int argc, char* argv[])
     }
     else
     {
-        // If the instance of the program has already been used, ensure that the temporary directory is empty
+        // Ensure that the temporary directory is empty
         FileManagement::deleteDirectoryContents(tempDir);
-        // If the instance of the program has already been used, ensure that the output directory is empty
+        // Ensure that the output directory is empty
         FileManagement::deleteDirectoryContents(outputDir);
     }
 
@@ -100,7 +116,7 @@ int main(int argc, char* argv[])
     // Creates a Reduce class that saves the output directory
     Reduce theReduction(outputDir);
 
-    //loop to run through the string vector pairs in the map and use a reduce class
+    // Loop to run through the string vector pairs in the map and use a reduce class
     // to add the word and the vector sum to an output file in the output directory
     for (const auto& pair : words)
     {
