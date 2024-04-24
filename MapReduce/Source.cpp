@@ -24,6 +24,9 @@ their associated counts in the originating input files.*/
 
 int main(int argc, char* argv[])
 {
+    // Program banner
+    std::cout << "********** MapReduce Application **********\n\n";
+
     // For this program, the input directory name is "inputs"
     string inputDir;
     // For this program, the input directory name is "outputs"
@@ -78,7 +81,7 @@ int main(int argc, char* argv[])
     // If the user says that the directories can not be emptied, end the program and inform the user that the program is unable to continue
     if (userCheck == 0)
     {
-        std::cout << "As you do not want the program to empty the temp and output directories, the program is unable to continue.";
+        std::cout << "As you do not want the program to empty the temp and output directories, the program is unable to continue.\n";
         return 0;
     }
     else
@@ -132,4 +135,6 @@ int main(int argc, char* argv[])
     if (isSuccessful == 0) {
         int createOutput = FileManagement::createFile(outputDir + "\\Success.txt");
     }
+
+    std::cout << "\nProgram complete.\n";
 }
