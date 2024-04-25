@@ -29,9 +29,9 @@ int main(int argc, char* argv[])
 
     // For this program, the input directory name is "inputs"
     string inputDir;
-    // For this program, the input directory name is "outputs"
+    // For this program, the output directory name is "outputs"
     string outputDir;
-    // For this program, the input directory name is "temps"
+    // For this program, the temp directory name is "temps"
     string tempDir;
 
     // Convert command-line arguments to appropriate types
@@ -136,5 +136,6 @@ int main(int argc, char* argv[])
         int createOutput = FileManagement::createFile(outputDir + "\\Success.txt");
     }
 
+    // Program is complete
     std::cout << "\nProgram complete.\n";
 }
