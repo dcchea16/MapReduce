@@ -86,6 +86,7 @@ void Map::map(const std::string& key, const std::string& value)
                 }
             }
         }
+        flushBuffer()
         // Returns the result of the FileManagement function
         FreeLibrary(hDLL);
     }
