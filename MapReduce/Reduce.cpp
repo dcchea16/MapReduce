@@ -5,6 +5,8 @@
 #include <iostream>
 #include <filesystem>
 #include <string>
+using std::cerr;
+using std::to_string;
 
 //typedefs for the functions in the FileManagementLibrary used in this file
 typedef int (*funcCreateFile)(const string&);
@@ -64,7 +66,7 @@ int Reduce::exportReduce( string key, int reducedValue) {
         }
 
         // Create a single string with the key and the sum in the format they should be added to the file
-        string key_value_pair = "(\"" + key + "\"," + std::to_string(reducedValue) + ")\n";
+        string key_value_pair = "(\"" + key + "\"," + to_string(reducedValue) + ")\n";
         // Call a FileManagement function to write the string to the file, the function will return 0 if successful and 1 if there is an error
         if (writeDataToFile != NULL) {
             added = writeDataToFile(outputFileName, key_value_pair);
@@ -75,7 +77,7 @@ int Reduce::exportReduce( string key, int reducedValue) {
     }
 	//if the file management library fails to load inform the user
     else {
-        std::cerr << "Library load failed!\n" ;
+        cerr << "Library load failed!\n" ;
     }
     return added;
 
