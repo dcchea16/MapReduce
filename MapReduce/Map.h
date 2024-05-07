@@ -39,7 +39,7 @@ private:
     unordered_map<string, int> wordCount; // Hash table to store word counts
     void flushBuffer(); // Flush remaining words from buffer to file
     int bufferCount = 0; // Buffer Tracker
-    const int bufferThreshold = 100; // Threshold for the buffer
+    const int bufferThreshold = 500000; // Threshold for the buffer
     string fileName; // Name of the temp file where word counts are stored
 
     const string tempDirectory; // Directory path for storing temp files
