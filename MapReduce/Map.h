@@ -47,4 +47,3 @@ private:
 
 // Factory function to create a Map class and return a pointer
 extern "C" MAPLIBRARY_API PMap * createMap(string inputTemp);
-
