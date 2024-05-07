@@ -31,8 +31,8 @@ using std::cin;
 using std::cerr;
 
 
-using Map_Factory = PMap * (*)(const string&);
-using Reduce_Factory = PReduce * (*)(const string&);
+//using Map_Factory = PMap * (*)(const string&);
+//using Reduce_Factory = PReduce * (*)(const string&);
 
 //creates typedefs for the file management functions used in this file
 typedef int (*funcIsDirectoryPresent)(const string& dirPath);
@@ -40,6 +40,8 @@ typedef int (*funcIsDirectoryEmpty)(const string& dirPath);
 typedef int (*funcDeleteDirectoryContents)(const string& dirPath);
 typedef string (*funcReadDatafromFile)(const string& filePath);
 typedef int (*funcCreateFile)(const string& filePath);
+typedef PMap* (*Map_Factory)(const string&);
+typedef PReduce* (*Reduce_Factory)(const string&);
 
 
 int main(int argc, char* argv[])
@@ -62,8 +64,11 @@ int main(int argc, char* argv[])
     string inputDir;
     // For this program, the output directory name is "outputs"
     string outputDir;
+    string outputDir1;
     // For this program, the temp directory name is "temps"
     string tempDir;
+    string tempDir1;
+    
 
     
 
@@ -121,6 +126,7 @@ int main(int argc, char* argv[])
                 cin >> outputDir;
                 outputDirectory = isDirectoryPresent(outputDir);
             }
+			outputDir1 = outputDir;
 
             // Prompt user for temporary directory
             int tempDirectory = 1;
@@ -130,6 +136,7 @@ int main(int argc, char* argv[])
                 cin >> tempDir;
                 tempDirectory = isDirectoryPresent(tempDir);
             }
+			tempDir1 = tempDir;
 
             // Check with the user if the output and temp directories can be cleared
             int userCheck = 1;
@@ -149,15 +156,17 @@ int main(int argc, char* argv[])
                 // Ensure that the output directory is empty
                 deleteDirectoryContents(outputDir);
             }
-
+            
             // Create a map class, taking in the temporary directory as a parameter
-            auto pMap = mapFactory(tempDir);
+
+            auto pMap = mapFactory(tempDir1);
+
 			//if the map class is not created, inform the user
             if (!pMap) {
                 cerr << "Error: map factory failed\n";
                 return 1;
             }
-
+            
             // Iterate through the input files in the input directory
             for (const auto& entry : std::filesystem::directory_iterator(inputDir))
             {
@@ -169,13 +178,13 @@ int main(int argc, char* argv[])
             }
 			//release memory used by map class
             delete pMap;
-
+            
             // Create a Sort class
             Sort sorting;
-
             // Call the create_word_map function, which goes through the temp directory and returns a map
             // with all the words in the temp directory files and a vector of of the numbers associated with the word
             map <string, vector<int>> words = sorting.create_word_map(tempDir);
+
 
             // Create a varible to determine if all of the words have been added to the file correctly,
             // if they have it will remain 0
@@ -198,6 +207,7 @@ int main(int argc, char* argv[])
                 // Reduce function returns 0 if it is successful at adding it and returns 1 if unsuccessful,
                 // that number is added to isSuccessful
                 isSuccessful = isSuccessful + pReduce->reduce(pair.first, pair.second);
+                
             }
 			// release reduce class memory
 			delete pReduce;
@@ -205,7 +215,7 @@ int main(int argc, char* argv[])
             // If the previous loop was able to add all of the key, sum pairs to the file
             // an success file is created in the output directory
             if (isSuccessful == 0) {
-                int createOutput = createFile(outputDir + "\\Success.txt");
+                int createOutput = createFile(outputDir1 + "\\Success.txt");
             }
 
             // Program is complete
