@@ -8,6 +8,10 @@ Then an intermediate file will be generated.
 #include <string>
 #include <map>
 #include <vector>
+using std::map;
+using std::string;
+using std::vector;
+
 
 class Sort
 {
@@ -21,5 +25,5 @@ public:
 
 	// This function will create a word map that will look at the intermediate results
 	// to sort and aggregate them, given the tempDir
-	std::map <std::string, std::vector<int>> create_word_map(std::string tempDir);
+	map <string, vector<int>> create_word_map(string tempDir);
 };
